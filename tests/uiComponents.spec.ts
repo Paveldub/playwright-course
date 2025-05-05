@@ -89,7 +89,7 @@ test.describe('dropdown', () => {
   })
 })
 
-test.describe('tooltip', () => {
+test.describe('tooltips', () => {
   test.beforeEach(async ({ page }) => {
     await page.getByText(/modal & overlays/i).click();
     await page.getByText(/tooltip/i).click();
@@ -106,3 +106,52 @@ test.describe('tooltip', () => {
     expect(tooltip).toEqual("This is a tooltip");
   })
 })
+
+test.describe('tables', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.getByText(/tables & data/i).click();
+    await page.getByText(/smart table/i).click();
+  });
+
+  test('table test', async ({ page }) => {
+    const targetRow = page.getByRole('row', { name: 'twitter@outlook.com' });
+
+    await targetRow.locator('.nb-edit').click();
+    await page.locator('input-editor').getByPlaceholder('Age').clear();
+    await page.locator('input-editor').getByPlaceholder('Age').fill('35');
+    await page.locator('.nb-checkmark').click();
+  })
+});
+
+test.describe('datepicker', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.getByText(/forms/i).click();
+    await page.getByText(/datepicker/i).click();
+  });
+
+  test('datepicker test', async ({ page }) => {
+    const datepicker = page.getByPlaceholder('Form Picker');
+
+    await datepicker.click();
+
+    let date = new Date();
+    date.setDate(date.getDate() + 20);
+    const expectedDate = date.getDate().toString();
+    const expectedMonthShort = date.toLocaleString('En-US', { month: 'short' });
+    const expectedMonthLong = date.toLocaleString('En-US', { month: 'long' });
+    const expectedYearShort = date.getFullYear();
+    const dateToAssert = `${expectedMonthShort} ${expectedDate}, ${expectedYearShort}`
+
+    let calendarMonthAndYear = await page.locator('nb-calendar-view-mode').textContent();
+    const expectedMonthYear = `${expectedMonthLong} ${expectedYearShort}`;
+
+    while (!calendarMonthAndYear?.includes(expectedMonthYear)) {
+      await page.locator('nb-calendar-pageable-navigation [data-name="chevron-right"]').click();
+      calendarMonthAndYear = await page.locator('nb-calendar-view-mode').textContent();
+    }
+
+    await page.locator('[class="day-cell ng-star-inserted"]').getByText(expectedDate, { exact: true }).click();
+
+    await expect(datepicker).toHaveValue(dateToAssert);
+  })
+});
