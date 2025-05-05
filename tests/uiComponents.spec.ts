@@ -82,7 +82,27 @@ test.describe('dropdown', () => {
 
       await expect(header).toHaveCSS("background-color", colors[color]);
 
-      await dropdownMenu.click();
+      if (color !== "Corporate") {
+        await dropdownMenu.click();
+      }
     }
+  })
+})
+
+test.describe('tooltip', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.getByText(/modal & overlays/i).click();
+    await page.getByText(/tooltip/i).click();
+  });
+
+  test('tooltip test', async ({ page }) => {
+    const tooltipCard = page.locator("nb-card", { hasText: /tooltip placements/i });
+
+    await tooltipCard.getByRole('button', { name: /top/i }).hover();
+
+    page.getByRole('tooltip');
+    const tooltip = await page.locator('nb-tooltip').textContent();
+
+    expect(tooltip).toEqual("This is a tooltip");
   })
 })
