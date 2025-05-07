@@ -1,20 +1,10 @@
-import { Locator, Page } from '@playwright/test'
+import { Page } from '@playwright/test'
 
 export class NavigationPage {
     readonly page: Page;
-    readonly formLayoutsMenuItem: Locator;
-    readonly datepickerMenuItem: Locator;
-    readonly smartTableMenuItem: Locator;
-    readonly toastrMenuItem: Locator;
-    readonly tooltipMenuItem: Locator;
 
     constructor(page: Page) {
         this.page = page;
-        this.formLayoutsMenuItem = page.getByText(/form layouts/i);
-        this.datepickerMenuItem = page.getByText(/datepicker/i);
-        this.smartTableMenuItem = page.getByText(/smart table/i);
-        this.toastrMenuItem = page.getByText(/toastr/i);
-        this.tooltipMenuItem = page.getByText(/tooltip/i);
     }
 
     private async selectGroupMenuItem(groupItemTitle: string) {
@@ -28,26 +18,26 @@ export class NavigationPage {
     
     async formLayoutsPage() {
         await this.selectGroupMenuItem("Forms");
-        await this.formLayoutsMenuItem.click();
+        await this.page.getByText(/form layouts/i).click();
     }
 
     async datepickerPage() {
         await this.selectGroupMenuItem("Forms");
-        await this.datepickerMenuItem.click();
+        await this.page.getByText(/datepicker/i).click();
     }
 
     async smartTablePage() {
         await this.selectGroupMenuItem("Tables & Data");
-        await this.smartTableMenuItem.click();
+        await this.page.getByText(/smart table/i).click();
     }
 
     async toastrPage() {
         await this.selectGroupMenuItem("Modal & Overlays");
-        await this.toastrMenuItem.click();
+        await this.page.getByText(/toastr/i).click();
     }
 
     async tooltipPage() {
         await this.selectGroupMenuItem("Modal & Overlays");
-        await this.tooltipMenuItem.click();
+        await this.page.getByText(/tooltip/i).click();
     }
 }
