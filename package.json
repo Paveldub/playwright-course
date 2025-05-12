@@ -5,7 +5,11 @@
   "repository": "git+https://github.com/bondar-artem/pw-practice-app.git",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve"
+    "start": "ng serve",
+    "pageObject-chrome": "npx playwright test usePageObjects.spec.ts --project=chromium",
+    "pageObject-firefox": "npx playwright test usePageObjects.spec.ts --project=firefox",
+    "pageObject-safari": "npx playwright test usePageObjects.spec.ts --project=webkit",
+    "pageObject-all": "npx playwright test usePageObjects.spec.ts"
   },
   "dependencies": {
     "@angular/animations": "^14.2.12",
@@ -55,6 +59,7 @@
     "@angular/compiler-cli": "^14.2.12",
     "@angular/language-service": "14.2.12",
     "@compodoc/compodoc": "^1.1.19",
+    "@faker-js/faker": "^9.7.0",
     "@fortawesome/fontawesome-free": "^5.2.0",
     "@playwright/test": "^1.52.0",
     "@types/leaflet": "1.2.3",

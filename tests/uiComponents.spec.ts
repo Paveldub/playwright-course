@@ -4,7 +4,7 @@ test.beforeEach(async ({ page }) => {
   await page.goto('http://localhost:4200/');
 });
 
-test.describe('Form layout page', () => {
+test.describe.only('Form layout page', () => {
   test.beforeEach(async ({ page }) => {
     await page.getByText(/forms/i).click();
     await page.getByText(/form layouts/i).click();
