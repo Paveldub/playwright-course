@@ -1,9 +1,9 @@
-import { test } from '@playwright/test';
+import { test } from '../../test-options';
 import { faker } from '@faker-js/faker';
 import { PageManager } from '../page-objects/pageManager';
 
-test.beforeEach(async ({ page }) => {
-  await page.goto('http://localhost:4200/');
+test.beforeEach(async ({ page, globalQAURL }) => {
+  await page.goto(globalQAURL);
 });
 
 test('naviget to form page', async ({ page }) => {
