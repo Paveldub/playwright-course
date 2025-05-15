@@ -51,5 +51,13 @@ export default defineConfig<TestOptions>({
         baseURL: process.env.PROD_URL || 'https://docs.snapsign-app.com/',
       },
     },
+
+    {
+      name: 'mobile',
+      testMatch: ['testMobile.spec.ts'],
+      use: { 
+        ...devices['iPhone 13 Pro'],
+      },
+    }
   ],
 });

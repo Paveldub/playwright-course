@@ -1,10 +1,7 @@
 import { test } from '../test-options';
 import { faker } from '@faker-js/faker';
-import { PageManager } from './page-objects/pageManager';
 
-test("parametrized methods test", async({ page, formLayoutsPageURL }) => {
-    const pageManager = new PageManager(page);
-
+test("parametrized methods test", async({ pageManager }) => {
     const randomFullName = faker.person.fullName();
     const randomEmail = `${randomFullName.replace(" ", "").toLowerCase()}${faker.number.int(1000)}@test.com`;
     const randomPassword = faker.internet.password();
