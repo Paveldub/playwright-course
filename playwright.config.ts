@@ -5,6 +5,7 @@ require('dotenv').config();
 
 export default defineConfig<TestOptions>({
   retries: 1,
+  // reporter: 'allure-playwright',
   reporter: 'html',
   use: {
     baseURL: process.env.LOCAL_URL || 'http://localhost:4200',

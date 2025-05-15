@@ -1,0 +1,2 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","2946","input fields","mobile","Thu May 15 14:04:01 MSK 2025","passed","Thu May 15 14:04:04 MSK 2025","Form layout page","tests/testMobile.spec.ts","",""
